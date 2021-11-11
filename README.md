@@ -6,4 +6,18 @@
 
 ### Integrantes:
 
+### Integrantes:
+
 :computer: Yulian Múnera Marín: Administrador de Bases de Datos
+
+
+:computer: Harold Stiven Gaviria Henao: Product Owner
+
+
+:computer: Cristian David Bustos Torres: Analista
+
+
+:computer: Jorge Luis Candamil Acevedo: Desarrollador
+
+
+:computer: Jarol Andres Castaño Ramirez: Scrum Master
