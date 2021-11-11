@@ -4,7 +4,6 @@
 
 ### Nombre del grupo: NoobDev
 
-### Integrantes:
 
 ### Integrantes:
 
