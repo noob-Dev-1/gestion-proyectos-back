@@ -41,13 +41,14 @@ const crearProyectoConObjetivos1 = async () => {
     tipo: Enum_TipoObjetivo.especifico,
     proyecto: proyectoCreado._id,
   });
+
 };
 const consultaProyectoConObjetivos1 = async () => {
-  const proyecto = await ProjectModel.findOne({ _id: '618d52f71098bc9a121e95d5' });
+  const proyecto = await ProjectModel.find();
 
   console.log('el proyecto que encontré fue', proyecto);
 
-  const objetivos = await ObjectiveModel.find({ project: '618d52f71098bc9a121e95d5' });
+  const objetivos = await ObjectiveModel.find();
 
   console.log('los objetivos del proyecto son: ', objetivos);
 
@@ -56,6 +57,7 @@ const consultaProyectoConObjetivos1 = async () => {
   console.log('el proyecto con objetivos es: ', proyectoConObjetivos);
 };
 
+/*
 // METODOLOGIA ONE TO MANY #2
 const crearProyectoConObjetivos2 = async () => {
   const usuarioInicial = await UserModel.create({
@@ -126,9 +128,12 @@ const consultaProyectoConObjetivos3 = async () => {
   const proyectoCreado = await ProjectModel.find({ id: '618d5b22e4e2a99bddab693e' });
   console.log('proyecto', proyectoCreado);
 };
-
+*/
 const main = async () => {
   await conectarBD();
+  //crearProyectoConObjetivos1();
+
+  consultaProyectoConObjetivos1();
 };
 
 main();
