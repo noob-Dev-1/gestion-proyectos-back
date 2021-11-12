@@ -4,4 +4,9 @@ enum Enum_Rol {
   administrador = 'Administrador',
 }
 
-export { Enum_Rol };
+enum Enum_Estado_Inscripcion {
+  aceptada = 'Aceptada',
+  rechazada = 'Rechazada'
+}
+
+export { Enum_Rol , Enum_Estado_Inscripcion}  ;
