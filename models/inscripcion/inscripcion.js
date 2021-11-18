@@ -12,19 +12,20 @@ import { UserModel } from '../usuario/usuario.js';
 //   estudiante: Schema.Types.ObjectId;
 // }
 
-const inscriptionSchema = new Schema({
+const inscripcionSchema = new Schema({
   estado: {
     type: String,
     enum: ['ACEPTADA', 'RECHAZADA', 'PENDIENTE'],
+    default: 'PENDIENTE',
     required: true,
   },
   fechaIngreso: {
     type: Date,
-    required: true,
+    required: false,
   },
   fechaEgreso: {
     type: Date,
-    required: true,
+    required: false,
   },
   proyecto: {
     type: Schema.Types.ObjectId,
@@ -38,6 +39,6 @@ const inscriptionSchema = new Schema({
   },
 });
 
-const InscriptionModel = model('Inscripcion', inscriptionSchema);
+const ModeloInscripcion = model('Inscripcion', inscripcionSchema);
 
-export { InscriptionModel };
+export { ModeloInscripcion };

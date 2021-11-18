@@ -26,5 +26,5 @@ app.listen({ port }, async () => {
 
   server.applyMiddleware({ app });
   const baseDatos = process.env.DBNAME;
-  console.log('servidor listo.\nConectado a Base de datos: ' + baseDatos);
+  console.log('servidor Conectado a Base de datos: ' + baseDatos);
 });
