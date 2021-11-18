@@ -2,15 +2,15 @@ import { Schema, model } from 'mongoose';
 import { ProjectModel } from './project';
 import { UserModel } from './user';
 
-interface Avance {
+/* interface Avance {
   fecha: Date;
   descripcion: string;
   observaciones: [string];
   proyecto: Schema.Types.ObjectId;
   creadoPor: Schema.Types.ObjectId;
-}
+} */
 
-const advancementSchema = new Schema<Avance>({
+const avanceSchema = new Schema<Avance>({
   fecha: {
     type: Date,
     required: true,
@@ -36,6 +36,6 @@ const advancementSchema = new Schema<Avance>({
   },
 });
 
-const ModeloAvance = model('Avance', advancementSchema, 'Avances');
+const ModeloAvance = model('Avance', avanceSchema, 'Avances');
 
 export { ModeloAvance };

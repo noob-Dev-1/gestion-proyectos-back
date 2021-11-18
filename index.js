@@ -18,12 +18,13 @@ const app = express();
 app.use(express.json());
 
 app.use(cors());
+const port = process.env.PORT || 5500
 
-app.listen({ port: process.env.PORT || 4000 }, async () => {
+app.listen({ port }, async () => {
   await conectarBD();
   await server.start();
 
   server.applyMiddleware({ app });
-
-  console.log('servidor listo');
+  const baseDatos = process.env.DBNAME;
+  console.log('servidor listo.\nConectado a Base de datos: ' + baseDatos);
 });
