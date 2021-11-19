@@ -18,10 +18,10 @@ const tiposAvance = gql`
     crearAvance(fecha: Date!, descripcion: String!, proyecto: String!, creadoPor: String!): Avance
   }
   type Mutation {
-    eliminarAvance(fecha: Date!, descripcion: String!, proyecto: String!, creadoPor: String!): Avance
+    editarAvance(_id: String! fecha: Date!, descripcion: String!, proyecto: String!, creadoPor: String!): Avance
   }
   type Mutation {
-    editarAvance(fecha: Date!, descripcion: String!, proyecto: String!, creadoPor: String!): Avance
+    eliminarAvance(_id: String! fecha: Date!, descripcion: String!): Avance
   }
 `;
 

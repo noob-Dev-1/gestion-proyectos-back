@@ -29,16 +29,16 @@ const resolversAvance = {
         descripcion: args.descripcion,
         proyecto: args.proyecto,
         creadoPor: args.creadoPor,
-      });
+      }, { new: true });
       return avanceEditado;
     },
-    eliminarAvance: async (parent, args)=>{
-      if (Object.keys(args).includes('_id')){
-        const avanceEliminado =await ModeloAvance.findOneAndDelete({_id: args._id});
+    eliminarAvance: async (parent, args) => {
+      if (Object.keys(args).includes('_id')) {
+        const avanceEliminado = await ModeloAvance.findOneAndDelete({ _id: args._id });
         return avanceEliminado;
-      }else if(Object.keys(args).includes('correo')){
-        const avanceEliminado =await ModeloAvance.findOneAndDelete({correo: args.correo});
-        return avanceEliminado;      
+      } else if (Object.keys(args).includes('correo')) {
+        const avanceEliminado = await ModeloAvance.findOneAndDelete({ correo: args.correo });
+        return avanceEliminado;
       }
     },
   },
