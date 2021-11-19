@@ -36,7 +36,7 @@ const resolversAvance = {
       if (Object.keys(args).includes('_id')){
         const avanceEliminado =await ModeloAvance.findOneAndDelete({_id: args._id});
         return avanceEliminado;
-      }else if(Object.keys(args).includes('correo'){
+      }else if(Object.keys(args).includes('correo')){
         const avanceEliminado =await ModeloAvance.findOneAndDelete({correo: args.correo});
         return avanceEliminado;      
       }
