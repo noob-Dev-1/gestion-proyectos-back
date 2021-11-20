@@ -27,7 +27,7 @@ const userSchema = new Schema({
       //     return false;
       //   }
       // },
-      message: 'El formato del correo electrónico está malo.',
+      message: 'Woops!\nEl formato del correo electrónico no es correcto.',
     },
   },
   identificacion: {
