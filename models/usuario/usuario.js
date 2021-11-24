@@ -53,6 +53,23 @@ const userSchema = new Schema({
     enum: ['PENDIENTE', 'AUTORIZADO', 'NO_AUTORIZADO'],
     default: 'PENDIENTE',
   },
+},
+{
+  toJSON: { virtuals: true }, // So `res.json()` and other `JSON.stringify()` functions include virtuals
+  toObject: { virtuals: true },
+}
+);
+
+userSchema.virtual('avances', {
+  ref: 'Avance',
+  localField: '_id',
+  foreignField: 'creadoPor',
+});
+
+userSchema.virtual('inscripciones',{
+  ref: 'Inscripcion',
+  localField: '_id',
+  foreignField: 'estudiante',
 });
 
 const UserModel = model('User', userSchema, 'Usuarios');
