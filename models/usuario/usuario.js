@@ -27,7 +27,7 @@ const userSchema = new Schema({
       //     return false;
       //   }
       // },
-      message: 'El formato del correo electrónico está malo.',
+      message: 'Woops!\nEl formato del correo electrónico no es correcto.',
     },
   },
   identificacion: {
@@ -53,6 +53,12 @@ const userSchema = new Schema({
     enum: ['PENDIENTE', 'AUTORIZADO', 'NO_AUTORIZADO'],
     default: 'PENDIENTE',
   },
+
+  password: {
+    type: String,
+    required: true,
+  },
+
 },
 {
   toJSON: { virtuals: true }, // So `res.json()` and other `JSON.stringify()` functions include virtuals
@@ -70,6 +76,7 @@ userSchema.virtual('inscripciones',{
   ref: 'Inscripcion',
   localField: '_id',
   foreignField: 'estudiante',
+
 });
 
 const UserModel = model('User', userSchema, 'Usuarios');
