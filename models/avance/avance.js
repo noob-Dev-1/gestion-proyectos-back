@@ -45,7 +45,7 @@ const avanceSchema = new Schema({
 avanceSchema.virtual('proyectos', {
   ref: 'Proyecto',
   localField: '_id',
-  foreignField: 'avance',
+  foreignField: 'avances',
 });
 
 
