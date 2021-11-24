@@ -36,7 +36,19 @@ const avanceSchema = new Schema({
     ref: UserModel,
     required: true,
   },
+},
+  {
+    toJSON: { virtuals: true }, // So `res.json()` and other `JSON.stringify()` functions include virtuals
+    toObject: { virtuals: true },
+  }
+);
+avanceSchema.virtual('proyectos', {
+  ref: 'Proyecto',
+  localField: '_id',
+  foreignField: 'avance',
 });
+
+
 
 const ModeloAvance = model('Avance', avanceSchema, 'Avances');
 

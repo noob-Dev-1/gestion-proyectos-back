@@ -4,14 +4,13 @@ const resolversAvance = {
   Query: {
     Avances: async (parent, args) => {
       const avances = await ModeloAvance.find()
-        .populate({ path: 'proyecto', select: '_id', populate: 'nombre' })
-        .populate({ path: 'creadoPor', select: '_id', populate: 'nombre' });
+        .populate({ path: 'proyecto', populate: { path: 'nombre' } });
       return avances;
     },
     filtrarAvance: async (parents, args) => {
       const avanceFiltrado = await ModeloAvance.find()
         /* .populate({ path: 'proyecto', select: '_id', populate: 'nombre' }) */
-        .populate({ path: 'creadoPor', select: '_id', populate: 'nombre', populate:{path: 'proyecto', select: 'nombre', populate:'_id'} })
+        .populate({ path: 'creadoPor', select: '_id', populate: { path: 'nombre' } })
         ;
       return avanceFiltrado;
     },

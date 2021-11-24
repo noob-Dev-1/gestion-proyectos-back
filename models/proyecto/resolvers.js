@@ -7,7 +7,6 @@ const resolversProyecto = {
         .populate({
           path: 'avances', populate: { path: 'creadoPor' },
         }).populate({ path: 'lider' });
-      /* .populate({path:'avances', select:'descripcion'}); */
       return proyectos;
     }/* ,
     filtrarProyecto: async (parent, args)=>{
