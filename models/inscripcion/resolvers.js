@@ -1,6 +1,6 @@
 
 
-const resolverInscripciones = {
+const resolversInscripcion = {
     Query: {
         Inscripciones: async (parent, args) => {
             const inscripciones = await ModeloInscripcion.find();
@@ -9,12 +9,12 @@ const resolverInscripciones = {
     },
     Mutation: {
         crearInscripcion: async (parent, args) => {
-            const insripcionCreada = await ModeloInscripcion.create({
+            const inscripcionCreada = await ModeloInscripcion.create({
                 estado: args.estado,
                 proyecto: args.proyecto,
                 estudiante: args.estudiante
             });
-            return insripcionCreada;
+            return inscripcionCreada;
         },
     },
     Mutation: {
@@ -28,4 +28,4 @@ const resolverInscripciones = {
     },
 };
 
-export { resolverInscripciones }
+export { resolversInscripcion }

@@ -7,7 +7,7 @@ const tiposInscripcion = gql`
         fechaIngreso: Date
         fechaEgreso: Date
         proyecto: Proyecto!
-        estuDiante: Usuario!
+        estudiante: Usuario!
     }
 
     type Query {
