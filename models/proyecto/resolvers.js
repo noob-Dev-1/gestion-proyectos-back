@@ -6,7 +6,7 @@ const resolversProyecto = {
       const proyectos = await ProjectModel.find()
         .populate({
           path: 'avances', populate: { path: 'creadoPor' },
-        }).populate({ path: 'lider' });
+        }).populate({ path: 'lider' }).populate({path: 'inscripciones'});
       return proyectos;
     }/* ,
     filtrarProyecto: async (parent, args)=>{
