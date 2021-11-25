@@ -5,8 +5,12 @@ const resolversProyecto = {
     Proyectos: async (parent, args) => {
       const proyectos = await ProjectModel.find()
         .populate({
-          path: 'avances', populate: { path: 'creadoPor' },
-        }).populate({ path: 'lider' }).populate({path: 'inscripciones'});
+          path: 'avances',
+          populate: {
+            path: 'creadoPor'
+          },
+        })
+        .populate({ path: 'lider' });
       return proyectos;
     }/* ,
     filtrarProyecto: async (parent, args)=>{

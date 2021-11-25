@@ -7,7 +7,7 @@ const tiposInscripcion = gql`
         fechaIngreso: Date
         fechaEgreso: Date
         proyecto: Proyecto!
-        estuDiante: Usuario!
+        estudiante: Usuario!
     }
 
     type Query {
@@ -22,12 +22,9 @@ const tiposInscripcion = gql`
         ): Inscripcion
     }
 
-
-    type Mutation{
-        aprobarInscripcion(
-            id: String!
-        ): Inscripcion
-}
+    type Mutation {
+        aprobarInscripcion(id: String!): Inscripcion
+    }
 
 `;
 export { tiposInscripcion };
