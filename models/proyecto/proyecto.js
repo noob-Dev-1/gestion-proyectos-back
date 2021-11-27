@@ -3,6 +3,7 @@ const { Schema, model } = mongoose;
 // import { Enum_EstadoProyecto, Enum_FaseProyecto, Enum_TipoObjetivo } from '../enums/enums';
 // import { ObjectiveModel } from '../objective';
 import { UserModel } from '../usuario/usuario.js';
+import {ObjectiveModel} from '../objetivo.js'
 
 // interface Proyecto {
 //   nombre: string;
