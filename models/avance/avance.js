@@ -2,14 +2,6 @@ import mongoose from 'mongoose';
 import { ProjectModel } from '../proyecto/proyecto.js';
 import { UserModel } from '../usuario/usuario.js';
 
-// interface Avance {
-//   fecha: Date;
-//   descripcion: string;
-//   observaciones: [string];
-//   proyecto: Schema.Types.ObjectId;
-//   creadoPor: Schema.Types.ObjectId;
-// }
-
 const { Schema, model } = mongoose;
 
 const avanceSchema = new Schema({
@@ -38,7 +30,7 @@ const avanceSchema = new Schema({
   },
 },
   {
-    toJSON: { virtuals: true }, // So `res.json()` and other `JSON.stringify()` functions include virtuals
+    toJSON: { virtuals: true },
     toObject: { virtuals: true },
   }
 );

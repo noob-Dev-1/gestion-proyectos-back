@@ -1,6 +1,4 @@
-
-
-import {ModeloInscripcion} from './inscripcion.js'
+import { ModeloInscripcion } from './inscripcion.js'
 
 const resolversInscripcion = {
     Query: {
@@ -18,16 +16,17 @@ const resolversInscripcion = {
             });
             return inscripcionCreada;
         },
-    },
-    Mutation: {
         aprobarInscripcion: async (parent, args) => {
-            const inscripcionAprobada = await ModeloInscripcion.findByIdAndUpdate(args.id, {
-                estado: 'ACEPTADO',
+            const inscripcionAprobada = await ModeloInscripcion.findByIdAndUpdate(args._id, {
+                estado: 'ACEPTADA',
                 fechaIngreso: Date.now(),
-            }, { new: true });
+            },
+                { new: true }
+            );
             return inscripcionAprobada;
         },
     },
+
 };
 
 export { resolversInscripcion }

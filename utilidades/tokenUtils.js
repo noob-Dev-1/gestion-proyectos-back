@@ -1,10 +1,29 @@
 
 import jwt from 'jsonwebtoken';
 
-const generateToken = (payload) => {
+const generarToken = (payload) => {
   return jwt.sign(payload, 'secret', {
-    expiresIn: '24h',
+    expiresIn: '48h',
   });
 };
 
-export { generateToken };
+const validarToken = (payload) => {
+  if (token) {
+    const verificacion = jwt.verify(token, 'secret', (err, data) => {
+      if (data) {
+        return {
+          data: data,
+        };
+      }
+      if (err) {
+        return {
+          error: err,
+        };
+      }
+    });
+    console.log(verificacion, token);
+    return verificacion;
+  }
+};
+
+export { generarToken, validarToken };
