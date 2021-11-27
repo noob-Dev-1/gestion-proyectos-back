@@ -3,19 +3,9 @@ import { ProjectModel } from './proyecto.js';
 const resolversProyecto = {
   Query: {
     Proyectos: async (parent, args) => {
-      const proyectos = await ProjectModel.find()
-        .populate({
-          path: 'avances',
-          populate: {
-            path: 'creadoPor'
-          },
-        })
-        .populate({ path: 'lider' });
+      const proyectos = await ProjectModel.find().populate('avances').populate('lider');
       return proyectos;
-    }/* ,
-    filtrarProyecto: async (parent, args)=>{
-      const proyectoFiltrado= await ProjectModel.find()
-    } */
+    }
   },
   Mutation: {
     crearProyecto: async (parent, args) => {
@@ -53,6 +43,7 @@ const resolversProyecto = {
       );
       return proyectoConObjetivo;
     },
+
     editarObjetivo: async (parent, args) => {
       const proyectoEditado = await ProjectModel.findByIdAndUpdate(
         args.idProyecto,
@@ -81,7 +72,15 @@ const resolversProyecto = {
       );
       return proyectoObjetivo;
     },
-
+    eliminarProyecto: async (parent, args) => {
+      if (Object.keys(args).includes('_id')) {
+        const proyectoEliminado = await ProjectModel.findOneAndDelete({ _id: args._id });
+        return proyectoEliminado;
+      } else if (Object.keys(args).includes('correo')) {
+        const proyectoEliminado = await ProjectModel.findOneAndDelete({ correo: args.correo });
+        return proyectoEliminado;
+      }
+    },
   },
 };
 

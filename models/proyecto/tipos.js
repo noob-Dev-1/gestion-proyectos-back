@@ -77,6 +77,10 @@ const tiposProyecto = gql`
       idProyecto: String!, 
       idObjetivo: String!
       ): Proyecto
+
+    eliminarProyecto(
+      _id:String!
+    ):Proyecto
   }
 `;
 

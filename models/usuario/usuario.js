@@ -1,15 +1,5 @@
 import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
-// import { Enum_Rol, Enum_EstadoUsuario } from '../enums/enums';
-
-// interface User {
-//   correo: string;
-//   identificacion: string;
-//   nombre: string;
-//   apellido: string;
-//   rol: Enum_Rol;
-//   estado: Enum_EstadoUsuario;
-// }
 
 const userSchema = new Schema({
   correo: {
@@ -20,13 +10,6 @@ const userSchema = new Schema({
       validator: (email) => {
         return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
       },
-      // (email) => {
-      //   if (email.includes('@') && email.includes('.')) {
-      //     return true;
-      //   } else {
-      //     return false;
-      //   }
-      // },
       message: 'Woops!\nEl formato del correo electrónico no es correcto.',
     },
   },
@@ -60,23 +43,29 @@ const userSchema = new Schema({
   },
 
 },
-{
-  toJSON: { virtuals: true }, // So `res.json()` and other `JSON.stringify()` functions include virtuals
-  toObject: { virtuals: true },
-}
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
 );
 
-userSchema.virtual('avances', {
+userSchema.virtual('avancesCreados', {
   ref: 'Avance',
   localField: '_id',
   foreignField: 'creadoPor',
 });
 
-userSchema.virtual('inscripciones',{
+userSchema.virtual('inscripciones', {
   ref: 'Inscripcion',
   localField: '_id',
   foreignField: 'estudiante',
 
+});
+
+userSchema.virtual('proyectosLiderados', {
+  ref: 'Proyecto',
+  localField: '_id',
+  foreignField: 'lider',
 });
 
 const UserModel = model('User', userSchema, 'Usuarios');

@@ -1,6 +1,6 @@
 import { UserModel } from "../../models/usuario/usuario.js";
 import bcrypt from 'bcrypt';
-import {generateToken} from '../../utilidades/tokenUtils.js'
+import { generarToken } from '../../utilidades/tokenUtils.js'
 
 const resolversAutenticacion = {
     Mutation: {
@@ -17,7 +17,7 @@ const resolversAutenticacion = {
             });
             console.log('Usuario creado con éxito', usuarioCreado);
             return {
-                token: generateToken({
+                token: generarToken({
                     _id: usuarioCreado._id,
                     nombre: usuarioCreado.nombre,
                     apellido: usuarioCreado.apellido,
@@ -27,7 +27,43 @@ const resolversAutenticacion = {
                 }),
             };
         },
-    },
+
+        iniciarSesion: async (parent, args) => {
+            const usuarioEcontrado = await UserModel.findOne({ correo: args.correo });
+            if (await bcrypt.compare(args.password, usuarioEcontrado.password)) {
+                return {
+                    token: generarToken({
+                        _id: usuarioEcontrado._id,
+                        nombre: usuarioEcontrado.nombre,
+                        apellido: usuarioEcontrado.apellido,
+                        identificacion: usuarioEcontrado.identificacion,
+                        correo: usuarioEcontrado.correo,
+                        rol: usuarioEcontrado.rol,
+                    }),
+                };
+            }
+        },
+
+        refrescarToken: async (parent, args, context) => {
+            console.log('contexto', context);
+            if (!context.userData) {
+                return {
+                    error: 'Token inválido',
+                };
+            } else {
+                return {
+                    token: generarToken({
+                        _id: context.userData._id,
+                        nombre: context.userData.nombre,
+                        apellido: context.userData.apellido,
+                        identificacion: context.userData.identificacion,
+                        correo: context.userData.correo,
+                        rol: context.userData.rol,
+                    }),
+                };
+            }
+        },
+    }
 };
 
 export { resolversAutenticacion };
