@@ -23,8 +23,7 @@ const tiposProyecto = gql`
     lider: Usuario!
     objetivos: [Objetivo]
     avances: [Avance]
-    inscripciones: [Inscripcion]
-    
+    inscripciones: [Inscripcion]   
   }
 
   type Query {
@@ -41,8 +40,6 @@ const tiposProyecto = gql`
       fase: Enum_FaseProyecto!
       lider: String!
       objetivos: [crearObjetivo]
-      avances: [Avance]
-      inscripcion: [Inscripcion]
     ): Proyecto
   }
 `;

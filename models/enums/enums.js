@@ -28,8 +28,8 @@
 // }
 
 // enum Enum_EstadoInscripcion {
-//   aceptada = 'aceptada',
-//   rechazada = 'rechazada',
+//   aceptada = 'ACEPTADA',
+//   rechazada = 'RECHAZADA',  
 // }
 
 // export {
