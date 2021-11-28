@@ -3,17 +3,40 @@ import { UserModel } from './usuario.js';
 const resolversUsuario = {
   Query: {
     Usuarios: async (parent, args) => {
-
-      const usuarios = await UserModel.find().populate({
-        path: 'avances'
-      }).populate({
-        path: 'inscripciones'
-      });
-
+      const usuarios = await UserModel.find()
+        .populate({
+          path: 'inscripciones',
+          populate: {
+            path: 'proyecto',
+            populate: [{ path: 'lider' }, { path: 'avances' }],
+          },
+        })
+        .populate({
+          path: 'avancesCreados',
+          populate: {
+            path: 'proyecto',
+            populate: [{ path: 'lider' }, { path: 'avances' }],
+          },
+        });
       return usuarios;
     },
+
     Usuario: async (parent, args) => {
-      const usuario = await UserModel.findOne({ _id: args._id });
+      const usuario = await UserModel.findOne({ _id: args._id })
+        .populate({
+          path: 'inscripciones',
+          populate: {
+            path: 'proyecto',
+            populate: [{ path: 'lider' }, { path: 'avances' }],
+          },
+        })
+        .populate({
+          path: 'avancesCreados',
+          populate: {
+            path: 'proyecto',
+            populate: [{ path: 'lider' }, { path: 'avances' }],
+          },
+        });
       return usuario;
     },
   },
