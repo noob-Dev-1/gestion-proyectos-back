@@ -16,6 +16,14 @@ const tiposAutenticacion = gql`
       estado: Enum_EstadoUsuario
       password: String!
     ): Token!
+
+    iniciarSesion(
+      correo: String!
+      password: String!
+    ): Token
+
+    refrescarToken: Token
+
   }`;
 
 export { tiposAutenticacion };
