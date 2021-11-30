@@ -2,10 +2,22 @@ import { ProjectModel } from './proyecto.js';
 
 const resolversProyecto = {
   Query: {
-    Proyectos: async (parent, args) => {
-      const proyectos = await ProjectModel.find().populate('avances').populate('lider');
-      return proyectos;
-    }
+    Proyectos: async (parent, args, context) => {
+      if (context.userData.rol === 'ADMINISTRADOR') {
+        const proyectos = await ProjectModel.find()
+          .populate({
+            path: 'avances',
+            populate: {
+              path: 'creadoPor'
+            },
+          })
+          .populate('lider');
+        return proyectos;
+      } else {
+        const proyectos = await ProjectModel.find();
+        return proyectos;
+      }
+    },
   },
   Mutation: {
     crearProyecto: async (parent, args) => {
