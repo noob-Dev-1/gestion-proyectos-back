@@ -3,9 +3,10 @@ import { ProjectModel } from './proyecto.js';
 const resolversProyecto = {
   Query: {
     Proyectos: async (parent, args, context) => {
-      const proyectos = await ProjectModel.find().populate([
+      const proyectos = await ProjectModel.find()
+      .populate([
         { path: 'lider' },
-        { path: 'avances' },
+        { path: 'avances', populate: { path: 'creadoPor' } },
         { path: 'inscripciones', populate: { path: 'estudiante' } },
       ]);
       return proyectos;
@@ -76,7 +77,7 @@ const resolversProyecto = {
       );
       return proyectoObjetivo;
     },
-    
+
     eliminarProyecto: async (parent, args) => {
       if (Object.keys(args).includes('_id')) {
         const proyectoEliminado = await ProjectModel.findOneAndDelete({ _id: args._id });
