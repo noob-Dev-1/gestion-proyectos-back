@@ -4,11 +4,11 @@ const resolversProyecto = {
   Query: {
     Proyectos: async (parent, args, context) => {
       const proyectos = await ProjectModel.find()
-      .populate([
-        { path: 'lider' },
-        { path: 'avances', populate: { path: 'creadoPor' } },
-        { path: 'inscripciones', populate: { path: 'estudiante' } },
-      ]);
+        .populate([
+          { path: 'lider' },
+          { path: 'avances', populate: { path: 'creadoPor' } },
+          { path: 'inscripciones', populate: { path: 'estudiante' } },
+        ]);
       return proyectos;
     }
   },
@@ -18,6 +18,8 @@ const resolversProyecto = {
         nombre: args.nombre,
         estado: args.estado,
         fase: args.fase,
+        /* fechaInicio: new Date().toISOString().slice(0, -14).split("T")[0],
+        fechaFin: new Date().toISOString().slice(0, -14).split("T")[0], */
         fechaInicio: args.fechaInicio,
         fechaFin: args.fechaFin,
         presupuesto: args.presupuesto,
