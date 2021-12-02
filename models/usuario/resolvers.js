@@ -9,27 +9,17 @@ const resolversUsuario = {
           { path: 'inscripciones', populate: { path: '_id' } },
           { path: 'avancesCreados', populate: { path: '_id' } },
           { path: 'proyectosLiderados', populate: { path: '_id' } },
-          ,
         ]);
       return usuarios;
     },
 
     Usuario: async (parent, args) => {
       const usuario = await UserModel.findOne({ _id: args._id })
-        .populate({
-          path: 'inscripciones',
-          populate: {
-            path: 'proyecto',
-            populate: [{ path: 'lider' }, { path: 'avances' }],
-          },
-        })
-        .populate({
-          path: 'avancesCreados',
-          populate: {
-            path: 'proyecto',
-            populate: [{ path: 'lider' }, { path: 'avances' }],
-          },
-        });
+      .populate([
+        { path: 'inscripciones', populate: { path: '_id' } },
+        { path: 'avancesCreados', populate: { path: '_id' } },
+        { path: 'proyectosLiderados', populate: { path: '_id' } },
+      ]);
       return usuario;
     },
   },
