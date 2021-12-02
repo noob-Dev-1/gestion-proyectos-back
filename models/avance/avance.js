@@ -18,11 +18,11 @@ const avanceSchema = new Schema({
       type: String,
     },
   ],
-  proyecto: {
+  /* proyecto: {
     type: Schema.Types.ObjectId,
     ref: ProjectModel,
     required: true,
-  },
+  }, */
   creadoPor: {
     type: Schema.Types.ObjectId,
     ref: UserModel,
