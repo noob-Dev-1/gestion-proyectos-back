@@ -50,11 +50,11 @@ const projectSchema = new Schema(
         },
       },
     ],
-    /* avance: {
+     /* avance: {
       type: Schema.Types.ObjectId,
       required: true,
       ref: ModeloAvance,
-    }, */
+    },  */
   },
   
   {

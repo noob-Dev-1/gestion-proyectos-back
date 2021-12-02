@@ -34,7 +34,7 @@ const avanceSchema = new Schema({
     toObject: { virtuals: true },
   }
 );
-avanceSchema.virtual('proyectos', {
+avanceSchema.virtual('proyecto', {
   ref: 'Proyecto',
   localField: '_id',
   foreignField: 'avances',
