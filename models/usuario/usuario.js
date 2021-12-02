@@ -59,7 +59,6 @@ userSchema.virtual('inscripciones', {
   ref: 'Inscripcion',
   localField: '_id',
   foreignField: 'estudiante',
-
 });
 
 userSchema.virtual('proyectosLiderados', {
