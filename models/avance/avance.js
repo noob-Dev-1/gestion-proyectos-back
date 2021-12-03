@@ -18,29 +18,18 @@ const avanceSchema = new Schema({
       type: String,
     },
   ],
-  /* proyecto: {
+  proyecto: {
     type: Schema.Types.ObjectId,
     ref: ProjectModel,
     required: true,
-  }, */
+  },
   creadoPor: {
     type: Schema.Types.ObjectId,
     ref: UserModel,
     required: true,
   },
 },
-  {
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true },
-  }
 );
-avanceSchema.virtual('proyecto', {
-  ref: 'Proyecto',
-  localField: '_id',
-  foreignField: 'avances',
-});
-
-
 
 const ModeloAvance = model('Avance', avanceSchema, 'Avances');
 

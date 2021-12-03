@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { ModeloAvance } from '../avance/avance.js';
+//import { ModeloAvance } from '../avance/avance.js';
 import { UserModel } from '../usuario/usuario.js';
 
 const { Schema, model } = mongoose;
@@ -50,11 +50,6 @@ const projectSchema = new Schema(
         },
       },
     ],
-     /* avance: {
-      type: Schema.Types.ObjectId,
-      required: true,
-      ref: ModeloAvance,
-    },  */
   },
   
   {
