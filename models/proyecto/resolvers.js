@@ -27,9 +27,7 @@ const resolversProyecto = {
         const proyectoCreado = await ProjectModel.create({
           nombre: args.nombre,
           estado: args.estado,
-          fase: args.fase,
-          /* fechaInicio: new Date().toISOString().slice(0, -14).split("T")[0],
-          fechaFin: new Date().toISOString().slice(0, -14).split("T")[0], */
+          fase: args.fase,    
           fechaInicio: args.fechaInicio,
           fechaFin: args.fechaFin,
           presupuesto: args.presupuesto,
