@@ -1,8 +1,14 @@
+import { ModeloInscripcion } from '../inscripcion/inscripcion.js';
 import { UserModel } from './usuario.js';
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt';
 
 const resolversUsuario = {
-  Query: {
+  Usuario: {
+    inscripciones: async (parent, args, context) => {
+      return InscriptionModel.find({ estudiante: parent._id });
+    },
+  },
+/*   Query: {
     Usuarios: async (parent, args, context) => {
       const usuarios = await UserModel.find()
         .populate([
@@ -15,13 +21,24 @@ const resolversUsuario = {
 
     Usuario: async (parent, args) => {
       const usuario = await UserModel.findOne({ _id: args._id })
-      .populate([
-        { path: 'inscripciones', populate: { path: '_id' } },
-        { path: 'avancesCreados', populate: { path: '_id' } },
-        { path: 'proyectosLiderados', populate: { path: '_id' } },
-      ]);
+        .populate([
+          { path: 'inscripciones', populate: { path: '_id' } },
+          { path: 'avancesCreados', populate: { path: '_id' } },
+          { path: 'proyectosLiderados', populate: { path: '_id' } },
+        ]);
       return usuario;
     },
+  }, */
+  Query: {
+    Usuarios: async (parent, args, context) => {
+      console.log(args);
+      const usuarios = await UserModel.find({ ...args.filtro });
+      return usuarios;
+    },
+    Usuario: async (parent, args) => {
+      const usuario = await UserModel.findOne({ _id: args._id });
+      return usuario;
+    },  
   },
   Mutation: {
     crearUsuario: async (parent, args) => {

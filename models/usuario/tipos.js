@@ -14,13 +14,23 @@ const tiposUsuario = gql`
     proyectosLiderados: [Proyecto]
   }
 
-  type Query {
+  """ type Query {
     Usuarios: [Usuario]
     Usuario(
       _id: String!
       ): Usuario
+  } """
+  type Query{
+    Usuarios(filtro: FiltroUsuarios): [Usuario]
+    Usuario(_id: String!): Usuario
   }
-
+  input filtrosUsuarios {
+    _id: ID
+    identificacion: String
+    correo: String
+    rol: Enum_Rol
+    estado: Enum_EstadoUsuario
+}
   type Mutation {
     crearUsuario(
       nombre: String!
