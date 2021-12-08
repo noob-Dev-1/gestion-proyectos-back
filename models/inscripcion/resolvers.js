@@ -26,8 +26,8 @@ const resolversInscripcion = {
                     };
                 }
             }
-            const inscripciones = await InscriptionModel.find({ ...filtro });
-            return inscripciones;   
+            const inscripcionesDeProyectos = await InscriptionModel.find({ ...filtro });
+            return inscripcionesDeProyectos;   
         },
     },
 
