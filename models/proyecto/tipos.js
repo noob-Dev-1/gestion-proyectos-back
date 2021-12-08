@@ -23,6 +23,8 @@ const tiposProyecto = gql`
     fechaInicio: Date
     fechaFin: Date    
     lider: String
+    fase:String
+    estado:String
   }
 
   type Proyecto {

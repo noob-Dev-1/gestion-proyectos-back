@@ -1,5 +1,7 @@
 import { ModeloInscripcion } from '../inscripcion/inscripcion.js';
 import { UserModel } from './usuario.js';
+import { ProjectModel } from '../proyecto/proyecto.js';
+import { ModeloAvance } from '../avance/avance.js';
 import bcrypt from 'bcrypt';
 
 const resolversUsuario = {
@@ -7,28 +9,35 @@ const resolversUsuario = {
     inscripciones: async (parent, args, context) => {
       return ModeloInscripcion.find({ estudiante: parent._id });
     },
+    avancesCreados: async (parent, args, context) => {
+      return ModeloAvance.find({ creadoPor: parent.creadoPor })
+    },
+    proyectosLiderados: async (parent, args, context) =>{
+      return ProjectModel.find({lider: parent.lider})
+    }
   },
-/*   Query: {
-    Usuarios: async (parent, args, context) => {
-      const usuarios = await UserModel.find()
-        .populate([
-          { path: 'inscripciones', populate: { path: '_id' } },
-          { path: 'avancesCreados', populate: { path: '_id' } },
-          { path: 'proyectosLiderados', populate: { path: '_id' } },
-        ]);
-      return usuarios;
-    },
 
-    Usuario: async (parent, args) => {
-      const usuario = await UserModel.findOne({ _id: args._id })
-        .populate([
-          { path: 'inscripciones', populate: { path: '_id' } },
-          { path: 'avancesCreados', populate: { path: '_id' } },
-          { path: 'proyectosLiderados', populate: { path: '_id' } },
-        ]);
-      return usuario;
-    },
-  }, */
+  /*   Query: {
+      Usuarios: async (parent, args, context) => {
+        const usuarios = await UserModel.find()
+          .populate([
+            { path: 'inscripciones', populate: { path: '_id' } },
+            { path: 'avancesCreados', populate: { path: '_id' } },
+            { path: 'proyectosLiderados', populate: { path: '_id' } },
+          ]);
+        return usuarios;
+      },
+  
+      Usuario: async (parent, args) => {
+        const usuario = await UserModel.findOne({ _id: args._id })
+          .populate([
+            { path: 'inscripciones', populate: { path: '_id' } },
+            { path: 'avancesCreados', populate: { path: '_id' } },
+            { path: 'proyectosLiderados', populate: { path: '_id' } },
+          ]);
+        return usuario;
+      },
+    }, */
   Query: {
     Usuarios: async (parent, args, context) => {
       console.log(args);
@@ -38,7 +47,7 @@ const resolversUsuario = {
     Usuario: async (parent, args) => {
       const usuario = await UserModel.findOne({ _id: args._id });
       return usuario;
-    },  
+    },
   },
   Mutation: {
     crearUsuario: async (parent, args) => {
