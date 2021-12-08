@@ -13,7 +13,7 @@ const resolversInscripcion = {
     },
     Query: {
         Inscripciones: async (parent, args, context) => {
-            const inscripciones = await InscriptionModel.find();
+            const inscripciones = await ModeloInscripcion.find();
             let filtro = {};
             if (context.userData) {
                 if (context.userData.rol === 'LIDER') {
@@ -26,7 +26,7 @@ const resolversInscripcion = {
                     };
                 }
             }
-            const inscripcionesDeProyectos = await InscriptionModel.find({ ...filtro });
+            const inscripcionesDeProyectos = await ModeloInscripcion.find({ ...filtro });
             return inscripcionesDeProyectos;   
         },
     },
