@@ -13,7 +13,7 @@ const resolversUsuario = {
       return ModeloAvance.find({ creadoPor: parent.creadoPor })
     },
     proyectosLiderados: async (parent, args, context) =>{
-      return ProjectModel.find({lider: parent.lider})
+      return ProjectModel.find({proyecto: parent.lider})
     }
   },
 
