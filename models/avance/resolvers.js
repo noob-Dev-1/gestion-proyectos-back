@@ -41,11 +41,11 @@ const resolversAvance = {
     },
     editarAvance: async (parent, args) => {
       const avanceEditado = await ModeloAvance.findByIdAndUpdate(args._id, {
-        fecha: args.fecha,
+        
         descripcion: args.descripcion,
-        proyecto: args.proyecto,
-        observaciones: args.observaciones,
-        creadoPor: args.creadoPor,
+        
+       
+        
       }, { new: true });
       return avanceEditado;
     },
