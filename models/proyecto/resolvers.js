@@ -1,4 +1,5 @@
 import { ProjectModel } from './proyecto.js';
+import { UserModel } from '../usuario/usuario.js';
 
 const resolversProyecto = {
   Proyecto: {
