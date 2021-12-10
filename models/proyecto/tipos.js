@@ -6,7 +6,14 @@ const tiposProyecto = gql`
     descripcion: String!
     tipo: Enum_TipoObjetivo!
   }
-
+  type Inscripcion {
+        _id: ID!
+        estado: Enum_EstadoInscripcion!
+        fechaIngreso: Date
+        fechaEgreso: Date
+        proyecto(lider:String): Proyecto!
+        estudiante: Usuario!
+    }
   input crearObjetivo {
     descripcion: String!
     tipo: Enum_TipoObjetivo!
@@ -23,8 +30,8 @@ const tiposProyecto = gql`
     fechaInicio: Date
     fechaFin: Date    
     lider: String
-    fase:String
-    estado:String
+    estado: Enum_EstadoProyecto
+    fase: Enum_FaseProyecto
   }
 
   type Proyecto {

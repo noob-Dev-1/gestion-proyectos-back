@@ -1,6 +1,16 @@
 import { gql } from "apollo-server-express";
 
 const tiposInscripcion = gql`
+type Proyecto{
+    _id: ID!
+    nombre: String!
+    presupuesto: Float!
+    fechaInicio: Date!
+    fechaFin: Date!
+    estado: Enum_EstadoProyecto!
+    fase: Enum_FaseProyecto!
+    lider: Usuario!
+}
     type Inscripcion {
         _id: ID!
         estado: Enum_EstadoInscripcion!
@@ -12,6 +22,7 @@ const tiposInscripcion = gql`
 
     type Query {
         Inscripciones: [Inscripcion]
+        InscripcionesNoContext: [Inscripcion]
     }
 
     """ type Mutation {

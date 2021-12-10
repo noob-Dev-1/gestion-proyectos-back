@@ -1,5 +1,7 @@
 import { ProjectModel } from './proyecto.js';
-import { UserModel } from '../usuario/usuario.js';
+import { UserModel } from '../usuario/usuario.js'
+import { ModeloAvance } from '../avance/avance.js'
+import { ModeloInscripcion } from '../inscripcion/inscripcion.js';
 
 const resolversProyecto = {
   Proyecto: {
@@ -9,25 +11,53 @@ const resolversProyecto = {
       });
       return usuarioLider;
     },
+    inscripciones: async (parent, args, context) => {
+      return await ModeloInscripcion.find({
+        _id: parent.inscripciones
+      })
+    },
+    avances: async (parent, args, context) => {
+      return ModeloAvance.find({ creadoPor: parent.creadoPor })
+      /* const avanceProyecto = await ModeloAvance.findOne({
+        _id: parent.avance.toString(),
+      });
+      return avanceProyecto; */
+    }
   },
+  Inscripcion: {
+    proyecto: async (parent, args, context) => {
+      return await ProjectModel.findOne({ _id: parent.proyecto });
+    },
+    estudiante: async (parent, args, context) => {
+      return await UserModel.findOne({ _id: parent.estudiante });
+    },
+  },
+  /* Avance:{
+    proyecto: async (parent, args, context) => {
+      return await ProjectModel.findOne({ _id: parent.proyecto });
+    },
+    creadoPor: async (parent, args, context) => {
+      return await UserModel.findOne({ _id: parent.creadoPor });
+    },
+  }, */
   Query: {
     Proyectos: async (parent, args, context) => {
       const proyectos = await ProjectModel.find()
-        .populate([
+        /* .populate([
           { path: 'lider' },
           { path: 'avances', populate: { path: 'creadoPor' } },
           { path: 'inscripciones', populate: { path: 'estudiante' } },
-        ]);
+        ]) */;
       return proyectos;
     },
 
     Proyecto: async (parent, args, context) => {
       const proyecto = await ProjectModel.findOne({ _id: args._id })
-        .populate([
+       /*  .populate([
           { path: 'lider' },
           { path: 'avances', populate: { path: 'creadoPor' } },
           { path: 'inscripciones', populate: { path: 'estudiante' } },
-        ]);
+        ]) */;
       return proyecto;
     },
   },

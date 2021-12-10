@@ -3,9 +3,10 @@ import { ProjectModel } from '../proyecto/proyecto.js';
 import { UserModel } from '../usuario/usuario.js';
 
 const resolversInscripcion = {
+   
     Inscripcion: {
         proyecto: async (parent, args, context) => {
-            return await ProjectModel.findOne({ _id: parent.proyecto });
+          return await ProjectModel.findOne({ _id: parent.proyecto });
         },
         estudiante: async (parent, args, context) => {
             return await UserModel.findOne({ _id: parent.estudiante });
@@ -13,7 +14,6 @@ const resolversInscripcion = {
     },
     Query: {
         Inscripciones: async (parent, args, context) => {
-            const inscripciones = await ModeloInscripcion.find();
             let filtro = {};
             if (context.userData) {
                 if (context.userData.rol === 'LIDER') {
@@ -26,23 +26,26 @@ const resolversInscripcion = {
                     };
                 }
             }
-            const inscripcionesDeProyectos = await ModeloInscripcion.find({ ...filtro });
-            return inscripcionesDeProyectos;   
+            const inscripciones = await ModeloInscripcion.find({ ...filtro });
+            return inscripciones;
         },
+        InscripcionesNoContext: async (parent, args, context) => {
+            return await ModeloInscripcion.find();
+        }
     },
 
     Mutation: {
         crearInscripcion: async (parent, args) => {
             const inscripcionCreada = await ModeloInscripcion.create({
-            proyecto: args.proyecto,
-            estudiante: args.estudiante
-        });
-        return inscripcionCreada;
+                proyecto: args.proyecto,
+                estudiante: args.estudiante
+            });
+            return inscripcionCreada;
         },
         aprobarInscripcion: async (parent, args) => {
             const inscripcionAprobada = await ModeloInscripcion.findByIdAndUpdate(args._id, {
                 estado: 'ACEPTADA',
-                fechaIngreso: Date.now().toISOString().split("T")[0],
+                fechaIngreso: Date.now(),
             },
                 { new: true }
             );

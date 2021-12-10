@@ -1,11 +1,23 @@
 import { ModeloAvance } from './avance.js';
+import { ProjectModel } from '../proyecto/proyecto.js'
+import { UserModel } from '../usuario/usuario.js'
+
 
 const resolversAvance = {
+  Avance: {
+    proyecto: async (parent, args, context) => {
+      return await ProjectModel.findOne({ _id: parent.proyecto });
+    },
+    creadoPor: async (parent, args, context) => {
+      return await UserModel.findOne({ _id: parent.creadoPor })
+    }
+  },
+
   Query: {
     Avances: async (parent, args) => {
       const avances = await ModeloAvance.find()
         .populate(
-          {path:'proyecto'}
+          { path: 'proyecto' }
         )
         .populate('creadoPor');
       return avances;
