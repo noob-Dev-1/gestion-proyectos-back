@@ -20,7 +20,7 @@ const inscripcionSchema = new Schema({
     type: Date,
     required: false,
   },
-  proyecto: {
+/*   proyecto: {
     type: Schema.Types.ObjectId,
     ref: ProjectModel,
     required: true,
@@ -29,8 +29,22 @@ const inscripcionSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: UserModel,
     required: true,
-  },
+  }, */
 });
+
+inscripcionSchema.virtual('proyecto', {
+  ref: 'Proyecto',
+  localField: '_id',
+  foreignField: 'proyecto',
+});
+
+inscripcionSchema.virtual('estudiante', {
+  ref: 'Usuario',
+  localField: '_id',
+  foreignField: 'estudiante',
+});
+
+
 
 const ModeloInscripcion = model('Inscripcion', inscripcionSchema, 'Inscripciones');
 

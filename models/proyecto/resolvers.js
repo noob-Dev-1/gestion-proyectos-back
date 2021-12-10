@@ -12,12 +12,13 @@ const resolversProyecto = {
       return usuarioLider;
     },
     inscripciones: async (parent, args, context) => {
-      return await ModeloInscripcion.find({
-        _id: parent.inscripciones
-      })
+      const inscripciones = await ModeloInscripcion.find({
+        proyecto: parent._id,
+      });
+      return inscripciones;
     },
     avances: async (parent, args, context) => {
-      return ModeloAvance.find({ creadoPor: parent.creadoPor })
+      return await ModeloAvance.find({ creadoPor: parent.creadoPor })
       /* const avanceProyecto = await ModeloAvance.findOne({
         _id: parent.avance.toString(),
       });
