@@ -6,16 +6,18 @@ const resolversInscripcion = {
    
     Inscripcion: {
         proyecto: async (parent, args, context) => {
-          return await ProjectModel.findOne({ _id: parent.proyecto });
+          return await ProjectModel.findOne({ inscripcion: parent._id });
         },
         estudiante: async (parent, args, context) => {
-            return await UserModel.findOne({ _id: parent.estudiante });
+            return await UserModel.findOne({ usuario: parent.estudiante });
         },
     },
     Query: {
         Inscripciones: async (parent, args, context) => {
+           /*  console.log("query de inscripciones")
             let filtro = {};
             if (context.userData) {
+                console.log(userData)
                 if (context.userData.rol === 'LIDER') {
                     const projects = await ProjectModel.find({ lider: context.userData._id });
                     const projectList = projects.map((p) => p._id.toString());
@@ -24,14 +26,13 @@ const resolversInscripcion = {
                             $in: projectList,
                         },
                     };
+                } else {
+                    console.error("Error mostrando las inscripciones")
                 }
-            }
-            const inscripciones = await ModeloInscripcion.find({ ...filtro });
+            } */
+            const inscripciones = await ModeloInscripcion.find({ /* ... filtro  */});
             return inscripciones;
-        },
-        InscripcionesNoContext: async (parent, args, context) => {
-            return await ModeloInscripcion.find();
-        }
+        },        
     },
 
     Mutation: {

@@ -13,7 +13,7 @@ const resolversUsuario = {
       return ModeloAvance.find({ creadoPor: parent.creadoPor })
     },
     proyectosLiderados: async (parent, args, context) =>{
-      return ProjectModel.find({lider: parent.lider})
+      return ProjectModel.find({proyecto: parent.lider})
     }
   },
 
@@ -69,14 +69,16 @@ const resolversUsuario = {
       return usuarioCreado;
     },
     editarUsuario: async (parent, args) => {
-      const usuarioEditado = await UserModel.findByIdAndUpdate(args._id, {
-        nombre: args.nombre,
+      const usuarioEditado = await UserModel.findByIdAndUpdate(args._id, 
+        {
+        /* nombre: args.nombre,
         apellido: args.apellido,
         identificacion: args.identificacion,
         correo: args.correo,
         rol: args.rol,
-        estado: args.estado,
-      }, { new: true });
+        estado: args.estado, */
+        ...args.campos },
+       { new: true });
 
       return usuarioEditado;
     },
