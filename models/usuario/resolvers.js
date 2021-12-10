@@ -77,7 +77,7 @@ const resolversUsuario = {
         correo: args.correo,
         rol: args.rol,
         estado: args.estado, */
-        ...args.filtros },
+        ...args.campos },
        { new: true });
 
       return usuarioEditado;

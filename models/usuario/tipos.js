@@ -34,7 +34,14 @@ const tiposUsuario = gql`
     Usuario(_id: String!): Usuario
   }
   input filtrosUsuarios {
-    
+    _id:ID!
+    nombre: String
+    identificacion: String
+    correo: String
+    rol: Enum_Rol
+    estado: Enum_EstadoUsuario
+}
+  input camposUsuarios {
     nombre: String
     identificacion: String
     correo: String
@@ -54,7 +61,7 @@ const tiposUsuario = gql`
 
     editarUsuario(
       _id: String!
-     filtros: filtrosUsuarios!
+     campos: camposUsuarios!
     ): Usuario
 
     eliminarUsuario(_id: String, correo: String): Usuario
