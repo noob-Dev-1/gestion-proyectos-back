@@ -18,7 +18,7 @@ const avanceSchema = new Schema({
       type: String,
     },
   ],
-  proyecto: {
+  /* proyecto: {
     type: Schema.Types.ObjectId,
     ref: ProjectModel,
     required: true,
@@ -27,9 +27,20 @@ const avanceSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: UserModel,
     required: true,
-  },
+  }, */
 },
 );
+avanceSchema.virtual('proyecto', {
+  ref: 'Proyecto',
+  localField: '_id',
+  foreignField: 'proyecto',
+});
+
+avanceSchema.virtual('estudiante', {
+  ref: 'Usuario',
+  localField: '_id',
+  foreignField: 'estudiante',
+});
 
 const ModeloAvance = model('Avance', avanceSchema, 'Avances');
 

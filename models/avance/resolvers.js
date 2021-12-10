@@ -6,10 +6,10 @@ import { UserModel } from '../usuario/usuario.js'
 const resolversAvance = {
   Avance: {
     proyecto: async (parent, args, context) => {
-      return await ProjectModel.findOne({ _id: parent.proyecto });
+      return await ProjectModel.findOne({ avance: parent.proyecto });
     },
     creadoPor: async (parent, args, context) => {
-      return await UserModel.findOne({ _id: parent.creadoPor })
+      return await UserModel.findOne({ usuario: parent.creadoPor })
     }
   },
 
