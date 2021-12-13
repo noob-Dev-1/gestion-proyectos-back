@@ -9,17 +9,17 @@ const resolversAvance = {
       return await ProjectModel.findOne({ avance: parent.proyecto });
     },
     creadoPor: async (parent, args, context) => {
-      return await UserModel.findOne({ usuario: parent.creadoPor })
+      return await UserModel.findOne({ usuario: parent._id })
     }
   },
 
   Query: {
     Avances: async (parent, args) => {
       const avances = await ModeloAvance.find()
-        .populate(
+        /* .populate(
           { path: 'proyecto' }
         )
-        .populate('creadoPor');
+        .populate('creadoPor') */;
       return avances;
     },
     filtrarAvance: async (parents, args) => {
