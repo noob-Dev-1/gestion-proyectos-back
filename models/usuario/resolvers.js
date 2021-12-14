@@ -71,13 +71,13 @@ const resolversUsuario = {
     editarUsuario: async (parent, args) => {
       const usuarioEditado = await UserModel.findByIdAndUpdate(args._id, 
         {
-        /* nombre: args.nombre,
+        nombre: args.nombre,
         apellido: args.apellido,
         identificacion: args.identificacion,
         correo: args.correo,
         rol: args.rol,
-        estado: args.estado, */
-        ...args.campos },
+        estado: args.estado
+        },
        { new: true });
 
       return usuarioEditado;
