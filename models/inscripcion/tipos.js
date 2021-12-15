@@ -21,6 +21,11 @@ type Proyecto{
         estudiante: Usuario
     }
 
+    input camposInscripciones {
+        estado: Enum_EstadoInscripcion       
+        estudiante: String
+    }
+
     type Query {
         Inscripciones (idEstudiante: String!): [Inscripcion]
         InscripcionesProyecto(idProyecto: String!): [Inscripcion]
@@ -37,7 +42,7 @@ type Proyecto{
     type Mutation {
     crearInscripcion(proyecto: String!, estudiante: String!): Inscripcion
 
-    aprobarInscripcion(id: String!): Inscripcion
+    aprobarInscripcion(_id: String!, campos: camposInscripciones!): Inscripcion
     }
 
 `;
