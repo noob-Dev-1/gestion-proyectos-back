@@ -69,16 +69,10 @@ const resolversUsuario = {
       return usuarioCreado;
     },
     editarUsuario: async (parent, args) => {
-      const usuarioEditado = await UserModel.findByIdAndUpdate(args._id, 
-        {
-        nombre: args.nombre,
-        apellido: args.apellido,
-        identificacion: args.identificacion,
-        correo: args.correo,
-        rol: args.rol,
-        estado: args.estado
-        },
-       { new: true });
+      const usuarioEditado = await UserModel.findByIdAndUpdate(
+        args._id,
+        { ...args.campos },
+        { new: true });
 
       return usuarioEditado;
     },
