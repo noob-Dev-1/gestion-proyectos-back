@@ -32,7 +32,10 @@ const resolversInscripcion = {
             } */
             const inscripciones = await ModeloInscripcion.find({ /* ... filtro  */});
             return inscripciones;
-        },        
+        },  
+        InscripcionesProyecto: async (parent, args, context) => {  
+            return await ModeloInscripcion.find();
+        }  
     },
 
     Mutation: {

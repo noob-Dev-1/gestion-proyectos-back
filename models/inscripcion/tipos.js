@@ -23,7 +23,7 @@ type Proyecto{
 
     type Query {
         Inscripciones (idEstudiante: String!): [Inscripcion]
-        InscripcionesNoContext: [Inscripcion]
+        InscripcionesProyecto(idProyecto: String!): [Inscripcion]
     }
 
     """ type Mutation {
