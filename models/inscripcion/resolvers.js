@@ -3,10 +3,10 @@ import { ProjectModel } from '../proyecto/proyecto.js';
 import { UserModel } from '../usuario/usuario.js';
 
 const resolversInscripcion = {
-   
+
     Inscripcion: {
         proyecto: async (parent, args, context) => {
-          return await ProjectModel.findOne({ inscripcion: parent._id });
+            return await ProjectModel.findOne({ inscripcion: parent._id });
         },
         estudiante: async (parent, args, context) => {
             return await UserModel.findOne({ usuario: parent.estudiante });
@@ -29,12 +29,12 @@ const resolversInscripcion = {
                     console.error("Error mostrando las inscripciones")
                 }
             }
-            const inscripciones = await ModeloInscripcion.find({ /* ... filtro  */});
+            const inscripciones = await ModeloInscripcion.find({ /* ... filtro  */ });
             return inscripciones;
-        },  
-        InscripcionesProyecto: async (parent, args, context) => {  
+        },
+        InscripcionesProyecto: async (parent, args, context) => {
             return await ModeloInscripcion.find();
-        }  
+        }
     },
 
     Mutation: {
@@ -46,10 +46,8 @@ const resolversInscripcion = {
             return inscripcionCreada;
         },
         aprobarInscripcion: async (parent, args) => {
-            const inscripcionAprobada = await ModeloInscripcion.findByIdAndUpdate(args._id, {
-                estado: 'ACEPTADA',
-                fechaIngreso: Date.now(),
-            },
+            const inscripcionAprobada = await ModeloInscripcion.findByIdAndUpdate(args._id,
+                { ...args.campos },
                 { new: true }
             );
             return inscripcionAprobada;
