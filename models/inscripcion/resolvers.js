@@ -14,7 +14,6 @@ const resolversInscripcion = {
     },
     Query: {
         Inscripciones: async (parent, args, context) => {
-           /*  console.log("query de inscripciones")
             let filtro = {};
             if (context.userData) {
                 console.log(userData)
@@ -29,7 +28,7 @@ const resolversInscripcion = {
                 } else {
                     console.error("Error mostrando las inscripciones")
                 }
-            } */
+            }
             const inscripciones = await ModeloInscripcion.find({ /* ... filtro  */});
             return inscripciones;
         },  
