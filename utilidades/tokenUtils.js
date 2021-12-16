@@ -7,7 +7,7 @@ const generarToken = (payload) => {
   });
 };
 
-const validarToken = (payload) => {
+const validateToken = (token) => {
   if (token) {
     const verificacion = jwt.verify(token, 'secret', (err, data) => {
       if (data) {
@@ -26,4 +26,4 @@ const validarToken = (payload) => {
   }
 };
 
-export { generarToken, validarToken };
+export { generarToken, validateToken };

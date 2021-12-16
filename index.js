@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import conectarBD from './db/db.js';
 import { tipos } from './graphql/types.js';
 import { resolvers } from './graphql/resolvers.js';
+import { validateToken} from './utilidades/tokenUtils.js'
 
 dotenv.config();
 
@@ -20,16 +21,17 @@ const getUserData = (token) => {
 const server = new ApolloServer({
   typeDefs: tipos,
   resolvers: resolvers,
-   context: ({ req, res }) => {
+  context: ({ req, res }) => {
     const token = req.headers?.authorization ?? null;
     if (token) {
       const userData = getUserData(token);
+      console.log('user data', userData)
       if (userData) {
         return { userData };
       }
     }
     return null;
-  }, 
+  },
 });
 
 const app = express();
