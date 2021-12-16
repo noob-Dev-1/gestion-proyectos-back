@@ -36,14 +36,16 @@ const tiposUsuario = gql`
   input filtrosUsuarios {
     _id:ID!
     nombre: String
+    apellido: String
     identificacion: String
     correo: String
     rol: Enum_Rol
     estado: Enum_EstadoUsuario
 }
 
-input camposUsuarios {    
+input camposUsuarios {
     nombre: String
+    apellido: String
     identificacion: String
     correo: String
     rol: Enum_Rol
@@ -62,9 +64,15 @@ input camposUsuarios {
       estado: Enum_EstadoUsuario
     ): Usuario
 
-    editarUsuario(_id: String!, campos: camposUsuarios!,): Usuario
+    editarUsuario(
+      _id: String!,
+      campos: camposUsuarios!
+      ): Usuario
 
-    eliminarUsuario(_id: String, correo: String): Usuario
+    eliminarUsuario(
+      _id: String,
+      correo: String
+      ): Usuario
   }
 `;
 
