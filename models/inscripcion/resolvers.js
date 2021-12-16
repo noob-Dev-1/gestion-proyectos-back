@@ -29,11 +29,26 @@ const resolversInscripcion = {
                     console.error("Error mostrando las inscripciones")
                 }
             }
-            const inscripciones = await ModeloInscripcion.find({ /* ... filtro  */ });
+            const inscripciones = await ModeloInscripcion.find({ ... filtro  });
             return inscripciones;
         },
         InscripcionesProyecto: async (parent, args, context) => {
-            return await ModeloInscripcion.find();
+            let filtro = {};
+            if (context.userData) {
+                console.log(userData)
+                if (context.userData.rol === 'LIDER') {
+                    const projects = await ProjectModel.find({ lider: context.userData._id });
+                    const projectList = projects.map((p) => p._id.toString());
+                    filtro = {
+                        proyecto: {
+                            $in: projectList,
+                        },
+                    };
+                } else {
+                    console.error("Error mostrando las inscripciones")
+                }
+            }
+            return await ModeloInscripcion.find({... filtro});
         }
     },
 
