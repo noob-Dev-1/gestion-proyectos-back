@@ -42,7 +42,7 @@ type Proyecto{
     type Mutation {
     crearInscripcion(proyecto: String!, estudiante: String!): Inscripcion
 
-    aprobarInscripcion(_id: String!, campos: camposInscripciones!): Inscripcion
+    manejarInscripcion(_id: String!, campos: camposInscripciones!): Inscripcion
     }
 
 `;

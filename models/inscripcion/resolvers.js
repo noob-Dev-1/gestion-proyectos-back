@@ -60,7 +60,7 @@ const resolversInscripcion = {
             });
             return inscripcionCreada;
         },
-        aprobarInscripcion: async (parent, args) => {
+        manejarInscripcion: async (parent, args) => {
             const inscripcionAprobada = await ModeloInscripcion.findByIdAndUpdate(args._id,
                 { ...args.campos },
                 { new: true }
