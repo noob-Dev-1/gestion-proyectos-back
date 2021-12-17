@@ -15,7 +15,11 @@ const resolversAvance = {
 
   Query: {
     Avances: async (parent, args) => {
-      const avances = await ModeloAvance.find();
+      let filter = {};
+      if (args.project){
+        filter={...args};
+      } 
+      const avances = await ModeloAvance.find(filter);
       return avances;
     },
     filtrarAvance: async (parents, args) => {
