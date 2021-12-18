@@ -31,13 +31,13 @@ type Proyecto{
         InscripcionesProyecto(idProyecto: String!): [Inscripcion]
     }
 
-    """ type Mutation {
+    type Mutation {
         crearInscripcion(
             estado: Enum_EstadoInscripcion!
             proyecto: String!
             estudiante: String!
         ): Inscripcion
-    } """
+    }
 
     type Mutation {
     crearInscripcion(proyecto: String!, estudiante: String!): Inscripcion
