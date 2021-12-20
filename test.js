@@ -60,9 +60,10 @@ it('fetches user', async () => {
             }
           }
       `,
-      variables: {
-        filtro: {
-          "correo": 'testing@testing.com',},
+    variables: {
+      filtro: {
+        "correo": 'testing@testing.com',
+      },
     },
   });
 
@@ -83,11 +84,10 @@ it('deletes user', async () => {
         }
       `,
     variables: {
-      "correo": 'testing@testing.com',
+      correo: 'testing@testing.com',
     },
   });
   assert.equal(result.data.eliminarUsuario.correo, 'testing@testing.com');
-  assert.equal()
   //Si el resultado (izquierda) es igual al correo esperado(derecha), la prueba pasa
 });
 
@@ -95,11 +95,11 @@ it('deletes user', async () => {
 it('fetches user after deletion', async () => {
   const result = await server.executeOperation({
     query: gql`
-        query Usuarios($filtro: FiltroUsuarios) {
+        query Usuarios($filtro: filtrosUsuarios) {
           Usuarios(filtro: $filtro) {
             correo
+            }
           }
-        }
       `,
     variables: {
       filtro: {
