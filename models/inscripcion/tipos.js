@@ -22,7 +22,7 @@ type Proyecto{
     }
 
     input camposInscripciones {
-        estado: Enum_EstadoInscripcion       
+        estado: Enum_EstadoInscripcion
         estudiante: String
     }
 
@@ -33,7 +33,7 @@ type Proyecto{
 
     type Mutation {
         crearInscripcion(
-            estado: Enum_EstadoInscripcion!
+            estado: Enum_EstadoInscripcion
             proyecto: String!
             estudiante: String!
         ): Inscripcion
