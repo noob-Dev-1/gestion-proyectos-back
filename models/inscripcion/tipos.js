@@ -27,7 +27,7 @@ type Proyecto{
     }
 
     type Query {
-        Inscripciones (idEstudiante: String!): [Inscripcion]
+        Inscripciones: [Inscripcion]
         InscripcionesProyecto(idProyecto: String!): [Inscripcion]
     }
 
